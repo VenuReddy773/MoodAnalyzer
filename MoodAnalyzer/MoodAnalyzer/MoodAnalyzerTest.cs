@@ -11,11 +11,14 @@ namespace MoodAnalyzer
         }
         public string AnalyzeMood()
         {
-            if(message.Contains("Sad"))
+            try
             {
-                return "Sad";
+                if (message.Contains("Happy"))
+                    return "Happy";
+                else
+                    return "Sad";
             }
-            else
+            catch (NullReferenceException)
             {
                 return "Happy";
             }
