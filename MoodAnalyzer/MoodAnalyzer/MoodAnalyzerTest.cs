@@ -9,6 +9,10 @@ namespace MoodAnalyzer
         {
             this.message = message;
         }
+        public MoodAnalyzerTest()
+        {
+            this.message = "";
+        }
         public string AnalyzeMood()
         {
             try
