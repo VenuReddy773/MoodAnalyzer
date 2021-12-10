@@ -58,7 +58,7 @@ namespace MoodAnalyzerTesting
         public void GivenMoodAnalyzerReflection_WhenAnalyze_ShouldReturnObject()
         {
             object expected = new MoodAnalyzerTest();
-            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyzerTesting.MoodAnalyzerTest", "MoodAnalyzerTest");
+            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyzer.MoodAnalyzerTest", "MoodAnalyzerTest");
             expected.Equals(actual);
         }
         [Test]
@@ -80,7 +80,40 @@ namespace MoodAnalyzerTesting
             string expected = "Constructor not found";
             try
             {
-                object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyzerTesting.MoodAnalyzerTest", "MoodAnalyzerTest");
+                object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyzer.MoodAnalyzerTest", "MoodAnalyzerTest");
+            }
+            catch (MoodAnalyzerException e)
+            {
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
+        [Test]
+        public void GivenMoodAnalyserParameterizedConstructor_ShouldReturnObject()
+        {
+            object expected = new MoodAnalyzerTest("Parameterized Constructor");
+            object actual = MoodAnalyserFactory.CreateMoodAnalyserParameterizedConstructor("MoodAnalyzer.MoodAnalyzerTest", "MoodAnalyser", "Parameterized Constructor");
+            expected.Equals(actual);
+        }
+        [Test]
+        public void GivenClassNameImproperParameterizedConstructor_WhenAnalyze_ShouldReturnMoodAnalysisException()
+        {
+            string expected = "Class not found";
+            try
+            {
+                object actual = MoodAnalyserFactory.CreateMoodAnalyserParameterizedConstructor("MoodAnalyzer.MoodAnalyzerTest", "MoodAnalyzer", "Parameterized Constructor");
+            }
+            catch (MoodAnalyzerException e)
+            {
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
+        [Test]
+        public void GivenImproperParameterizedConstructorName_WhenAnalyze_ShouldReturnMoodAnalysisException()
+        {
+            string expected = "Constructor not found";
+            try
+            {
+                object actual = MoodAnalyserFactory.CreateMoodAnalyserParameterizedConstructor("MoodAnalyzer.MoodAnalyzerTest", "MoodAnalyzer", "Parameterized Constructor");
             }
             catch (MoodAnalyzerException e)
             {
