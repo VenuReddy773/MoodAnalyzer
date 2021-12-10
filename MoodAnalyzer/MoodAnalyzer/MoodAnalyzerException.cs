@@ -13,7 +13,7 @@ namespace MoodAnalyzer
         }   
         public enum ExceptionType
         {
-            Null, Empty, NO_SUCH_CLASS, NO_SUCH_CONSTRUCTOR
+            Null, Empty, NO_SUCH_CLASS, NO_SUCH_CONSTRUCTOR, NO_SUCH_METHOD
         }
     }
 }
